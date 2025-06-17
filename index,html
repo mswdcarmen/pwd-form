@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PWD Application Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef6f9;
+      color: #333;
+      padding: 20px;
+    }
+    form {
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #135a7a;
+    }
+    section {
+      margin-bottom: 20px;
+      background: #d7ebf4;
+      padding: 15px;
+      border-left: 5px solid #2196f3;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+    section:hover {
+      background: #c1e2f5;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="date"],
+    input[type="number"],
+    input[type="file"],
+    select {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 15px 0;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    button:hover {
+      background: #135a7a;
+    }
+    .hidden {
+      display: none;
+    }
+    #popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .popup-content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 400px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <form id="pwdForm">
+    <h1>PWD Application Form</h1>
+
+    <section>
+      <label>1. Application Type:</label>
+      <select name="applicationType" required>
+        <option value="">Select</option>
+        <option>New Applicant</option>
+        <option>Renewal</option>
+        <option>Transfer to Other Barangay</option>
+      </select>
+    </section>
+
+    <section>
+      <label>2. PWD Number:</label>
+      <input type="text" name="pwdNumber" placeholder="RR-PPMM-BBB-NNNNNNN" required>
+    </section>
+
+    <section>
+      <label>3. Date Applied:</label>
+      <input type="date" name="dateApplied" id="dateApplied" required>
+    </section>
+
+    <section>
+      <label>4. Upload 1x1 Photo:</label>
+      <input type="file" name="photo" accept="image/*" required>
+    </section>
+
+    <section>
+      <label>5. Personal Information:</label>
+      <input type="text" name="lastName" placeholder="Last Name" required>
+      <input type="text" name="firstName" placeholder="First Name" required>
+      <input type="text" name="middleName" placeholder="Middle Name">
+      <input type="text" name="suffix" placeholder="Suffix">
+    </section>
+
+    <section>
+      <label>6. Date of Birth:</label>
+      <input type="date" name="birthDate" id="birthDate" required>
+      <label>Age:</label>
+      <input type="number" name="age" id="age" readonly placeholder="Auto-calculated">
+      <label>Blood Type:</label>
+      <select name="bloodType" required>
+        <option value="">Select</option>
+        <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+        <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+      </select>
+      <label>Sex:</label>
+      <select name="sex" required>
+        <option value="">Select</option>
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+    </section>
+
+    <!-- Additional Fields #7–#25 -->
+    <section>
+      <label>7. Civil Status:</label>
+      <select name="civilStatus" required>
+        <option value="">Select</option>
+        <option>Single</option><option>Married</option><option>Widowed</option><option>Separated</option>
+      </select>
+    </section>
+
+    <section>
+      <label>8. Type of Disability:</label>
+      <select name="disabilityType" required>
+        <option value="">Select</option>
+        <option>Deaf/Hard Hearing</option>
+        <option>Intellectual Disability</option>
+        <option>Learning Disability</option>
+        <option>Mental Disability</option>
+        <option>Physical Disability (Orthopedic)</option>
+        <option>Psychosocial Disability</option>
+        <option>Speech and Language Impairment</option>
+        <option>Visual Disability</option>
+        <option>Cancer (RA11215)</option>
+        <option>Rare Disease (RA10747)</option>
+      </select>
+    </section>
+
+    <section>
+      <label>9. Cause of Disability:</label>
+      <label>Congenital/Inborn:</label>
+      <input type="checkbox" name="cause[]" value="ADHD"> ADHD
+      <input type="checkbox" name="cause[]" value="Cerebral Palsy"> Cerebral Palsy
+      <input type="checkbox" name="cause[]" value="Down Syndrome"> Down Syndrome
+      <input type="checkbox" name="cause[]" value="Other Congenital"> Others, specify <input type="text" name="otherCongenital"><br><br>
+      <label>Acquired:</label>
+      <input type="checkbox" name="cause[]" value="Chronic Illness"> Chronic Illness
+      <input type="checkbox" name="cause[]" value="Injury"> Injury
+      <input type="checkbox" name="cause[]" value="Other Acquired"> Others, specify <input type="text" name="otherAcquired">
+    </section>
+
+    <section>
+      <label>10. Residence Address:</label>
+      <input type="text" name="houseStreet" placeholder="House No. and Street">
+      <input type="text" name="barangay" placeholder="Barangay" required>
+      <input type="text" name="municipality" value="Carmen" readonly>
+      <input type="text" name="province" value="Cebu" readonly>
+      <input type="text" name="region" value="VII" readonly>
+    </section>
+
+    <section>
+      <label>11. Contact Details:</label>
+      <input type="text" name="landline" placeholder="Landline No.">
+      <input type="text" name="mobile" placeholder="Mobile No." required>
+      <input type="email" name="email" placeholder="Email Address">
+    </section>
+
+    <section>
+      <label>12. Educational Attainment:</label>
+      <select name="education">
+        <option>None</option><option>Kindergarten</option><option>Elementary</option>
+        <option>Junior High School</option><option>Senior High School</option>
+        <option>College</option><option>Vocational</option><option>Post Graduate Program</option>
+      </select>
+    </section>
+
+    <section>
+      <label>13. Employment Info:</label>
+      <select name="employmentStatus" id="employmentStatus" onchange="toggleEmploymentFields()">
+        <option value="">Select</option>
+        <option>Employed</option>
+        <option>Unemployed</option>
+        <option>Self-employed</option>
+      </select>
+      <div id="employmentDetails">
+        <select name="employmentCategory">
+          <option>Government</option>
+          <option>Private</option>
+        </select>
+        <select name="employmentType">
+          <option>Permanent/Regular</option>
+          <option>Seasonal</option>
+          <option>Casual</option>
+          <option>Emergency</option>
+        </select>
+        <select name="occupation">
+          <option>Managers</option><option>Professionals</option>
+          <option>Clerical Support Workers</option>
+          <option>Service and Sales Workers</option>
+          <option>Skilled Agricultural Forestry and Fishery worker</option>
+          <option>Craft and Related trade Workers</option>
+          <option>Plant and Machine Operators and Assemblers</option>
+          <option>Elementary Occupations</option>
+          <option>Armed Forces</option>
+          <option>Others</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Additional fields like Organization Info, ID Numbers, Family Background, Certifying Physician, Approving Officer, etc. can go here similarly -->
+
+    <section>
+      <button type="button" onclick="confirmSubmission()">Submit</button>
+    </section>
+  </form>
+
+  <div id="popup" class="hidden">
+    <div class="popup-content">
+      <p>Are you sure about the details provided?</p>
+      <button onclick="submitForm()">Yes, Submit</button>
+      <button onclick="closePopup()">No, Go Back</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('birthDate').addEventListener('change', function () {
+      const birthDate = new Date(this.value);
+      const today = new Date();
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      document.getElementById('age').value = age;
+    });
+
+    function toggleEmploymentFields() {
+      const status = document.getElementById('employmentStatus').value;
+      const section = document.getElementById('employmentDetails');
+      if (status === "Unemployed" || status === "Self-employed") {
+        section.style.display = "none";
+      } else {
+        section.style.display = "block";
+      }
+    }
+
+    function confirmSubmission() {
+      document.getElementById('popup').classList.remove('hidden');
+    }
+
+    function closePopup() {
+      document.getElementById('popup').classList.add('hidden');
+    }
+
+    function submitForm() {
+      const form = document.getElementById('pwdForm');
+      const formData = new FormData(form);
+
+      fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec", {
+        method: "POST",
+        body: formData
+      }).then(res => {
+        alert("Application submitted successfully!");
+        form.reset();
+        closePopup();
+      }).catch(err => {
+        alert("Error submitting form.");
+        closePopup();
+      });
+    }
+  </script>
+</body>
+</html>
